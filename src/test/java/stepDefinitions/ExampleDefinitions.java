@@ -19,6 +19,7 @@ public class ExampleDefinitions extends BaseMethods {
     public ExampleDefinitions categories() {
         checkVisible(AWARDS);
         hoverElement(OSCARS);
+        notFindElement(DENEME);
         return this;
     }
 

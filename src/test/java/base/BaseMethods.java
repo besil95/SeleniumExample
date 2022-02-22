@@ -1,9 +1,7 @@
 package base;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.junit.Assert;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -28,7 +26,19 @@ public class BaseMethods {
     public WebElement findElement(By by) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+        logger.info("Element " + by + " is visible and clickable");
         return driver.findElement(by);
+    }
+
+    public boolean notFindElement(By by) {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+            wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(by));
+            logger.info("Element " + by + " is visible and clickable");
+            return false;
+        } catch (Exception ignored) {
+            return true;
+        }
     }
 
     public void hoverElement(By by) {
